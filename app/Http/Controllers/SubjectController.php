@@ -70,7 +70,10 @@ class SubjectController extends Controller
      */
     public function edit(Subject $subject)
     {
-        //
+        // dd($subject);
+        return Inertia::render('Subjects/Edit', [
+            'subjects' => $subject
+        ]);
     }
 
     /**
@@ -82,7 +85,17 @@ class SubjectController extends Controller
      */
     public function update(Request $request, Subject $subject)
     {
-        //
+        $subject->update([
+            'subject_name' => $request->subject_name,
+            'subject_code' => $request->subject_code,
+            'classroom' => $request->classroom,
+            'instructor' => $request->instructor,
+            // 'subject_name' => Request::input('subject_name'),
+            // 'subject_code' => Request::input('subject_code'),
+            // 'classroom' => Request::input('classroom'),
+            // 'instructor' => Request::input('instructor'),
+        ]);
+        return Redirect::route('subjects.index');
     }
 
     /**
@@ -93,6 +106,7 @@ class SubjectController extends Controller
      */
     public function destroy(Subject $subject)
     {
-        //
+        $subject->delete();
+        return Redirect::route('subjects.index');
     }
 }
