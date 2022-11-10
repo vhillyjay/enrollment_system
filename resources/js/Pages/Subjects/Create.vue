@@ -22,6 +22,9 @@
           Subject Name:
         </label>
         <input id="subject_name" v-model="form.subject_name" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+        <div v-if="errors.subject_name" class="text-red-600">
+          {{ errors.subject_name }}
+        </div>
       </div>
 
       <div class="mb-5">
@@ -29,6 +32,9 @@
           Subject Code:
         </label>
         <input id="subject_code" v-model="form.subject_code" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+        <div v-if="errors.subject_code" class="text-red-600">
+          {{ errors.subject_code }}
+        </div>
       </div>
 
       <div class="mb-5">
@@ -154,6 +160,10 @@ import { reactive } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+
+const props = defineProps({
+    errors: Object,
+});
 
 const form = reactive({
   subject_name: null,
